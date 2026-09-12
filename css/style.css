@@ -429,6 +429,7 @@ main { padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px) + 44px); }
 /* ---------- growth (the receipts) ---------- */
 .band--tight { padding-block: clamp(30px, 4vw, 52px); }
 .growth-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.growth-grid > .growth-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .growth-card {
   display: block;
   background: var(--paper);
@@ -476,7 +477,7 @@ main { padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px) + 44px); }
 }
 .growth-card__link {
   font-family: var(--font-display); font-weight: 700; font-size: 0.78rem;
-  color: var(--clip, var(--violet)); white-space: nowrap;
+  color: color-mix(in srgb, var(--clip, var(--violet)) 72%, var(--ink) 28%); white-space: nowrap;
   transition: transform .15s var(--ease);
 }
 .growth-card:hover .growth-card__link { transform: translateX(2px); }
