@@ -484,6 +484,7 @@ main { padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px) + 44px); }
 /* ---------- toolkit (the dock) ---------- */
 .dock { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 30px; }
 .app {
+  position: relative; overflow: hidden;
   width: 66px; height: 66px;
   border: var(--bd); border-radius: 16px;
   display: grid; place-items: center;
@@ -492,15 +493,23 @@ main { padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px) + 44px); }
   box-shadow: 3px 3px 0 var(--ink);
   transition: transform .14s var(--ease), box-shadow .14s var(--ease);
 }
+.app::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(155deg, rgba(255,255,255,.32) 0%, rgba(255,255,255,.05) 38%, transparent 60%);
+}
+.app::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  box-shadow: inset 0 -10px 14px -8px rgba(0,0,0,.35);
+}
 .app:hover { transform: translate(-2px, -3px); box-shadow: 6px 7px 0 var(--ink); }
 .app-slot { display: flex; flex-direction: column; align-items: center; gap: 7px; }
 .app-slot span:not(.app) { font-family: var(--font-body); font-weight: 600; font-size: 0.68rem; color: var(--ink-2); text-align: center; }
-.app--pr { --tile-bg: #1C0B40; --tile-fg: #CFC4FF; }
-.app--ae { --tile-bg: #1C0B40; --tile-fg: #D4C0FF; }
-.app--ps { --tile-bg: #041A2E; --tile-fg: #6CBEFF; }
-.app--ai { --tile-bg: #2E1200; --tile-fg: #FFB863; }
-.app--cc { --tile-bg: #0B0B0B; --tile-fg: #ffffff; }
-.app--cv { --tile-bg: #16C4CC; --tile-fg: #ffffff; }
+.app--pr { --tile-bg: #150A42; --tile-fg: #B9AEFF; }
+.app--ae { --tile-bg: #240A42; --tile-fg: #D9A6FF; }
+.app--ps { --tile-bg: #001E36; --tile-fg: #31C5FF; }
+.app--ai { --tile-bg: #330D02; --tile-fg: #FF9A2B; }
+.app--cc { --tile-bg: #0A0A0A; --tile-fg: #ffffff; }
+.app--cv { background: linear-gradient(140deg, #00C4CC 0%, #7D2AE8 62%, #8B3DFF 100%); --tile-fg: #ffffff; }
 
 .skills { display: flex; flex-wrap: wrap; gap: 10px; }
 .skill {
