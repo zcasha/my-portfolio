@@ -1,0 +1,23 @@
+# Raw/source footage and source images kept at the project root for reference.
+# The web-ready, transcoded versions the site actually uses live under assets/.
+# Excluded to keep the repo small — some of these also exceed GitHub's 100MB file limit.
+/*.mp4
+/*.mov
+/*.MP4
+/*.MOV
+/*.png
+/*.PNG
+/*.jpg
+/*.jpeg
+/*.JPG
+/*.JPEG
+
+# Claude Code / tooling config — not part of the deployed site
+.claude/
+.agents/
+skills-lock.json
+
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
