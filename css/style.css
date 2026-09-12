@@ -577,9 +577,9 @@ main { padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px) + 44px); }
 /* ---------- contact ---------- */
 .contact__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 76px); align-items: start; }
 .contact__lead p { color: var(--ink-2); max-width: 30ch; margin-top: 14px; }
-.contact__direct { margin-top: 26px; }
+.contact__direct { margin-top: 26px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
 .contact__direct a { font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; color: var(--violet); border-bottom: 3px solid var(--sun); }
-.contact__direct span { display: block; margin-top: 6px; color: var(--ink-2); font-size: 0.92rem; }
+.contact__direct span { display: block; color: var(--ink-2); font-size: 0.92rem; }
 .socials { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
 .socials a {
   font-family: var(--font-display); font-weight: 700; font-size: 0.86rem;
