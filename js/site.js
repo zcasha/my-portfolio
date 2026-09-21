@@ -87,14 +87,14 @@
   /* ---------- nav + mobile menu ---------- */
   const nav = $('#nav');
   const onScrollNav = () => nav && nav.classList.toggle('is-stuck', scrollY > 8);
-  onScrollNav();
   const toggle = $('#menuToggle'), mMenu = $('#mMenu');
-  const closeMenu = () => { mMenu.classList.remove('is-open'); document.body.classList.remove('menu-open'); toggle.setAttribute('aria-expanded', 'false'); };
+  const closeMenu = () => { mMenu.classList.remove('is-open'); document.body.classList.remove('menu-open'); toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Open menu'); };
   if (toggle) {
     toggle.addEventListener('click', () => {
       const open = mMenu.classList.toggle('is-open');
       document.body.classList.toggle('menu-open', open);
       toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
     $$('a', mMenu).forEach(a => a.addEventListener('click', closeMenu));
   }
@@ -143,6 +143,7 @@
   let ticking = false, lastTc = '', lastActive = -2;
   const updateScrub = () => {
     ticking = false;
+    onScrollNav();
     const pct = Math.min(1, Math.max(0, scrollY / scrollMax));
     if (play) play.style.transform = `scaleX(${pct})`;
     if (head) head.style.transform = `translateX(${pct * trackW}px) rotate(45deg)`;
@@ -156,7 +157,7 @@
     }
   };
   const reqScrub = () => { if (!ticking) { ticking = true; requestAnimationFrame(updateScrub); } };
-  addEventListener('scroll', () => { reqScrub(); onScrollNav(); }, { passive: true });
+  addEventListener('scroll', reqScrub, { passive: true });
   addEventListener('resize', () => { measure(); reqScrub(); }, { passive: true });
   addEventListener('load', () => { measure(); reqScrub(); });
   measure();
@@ -294,11 +295,16 @@
   });
 
   /* ---------- cursor ---------- */
-  if (finePointer) {
+  if (finePointer && !reduce) {
     const cur = $('#cursor'), dot = $('.cursor__dot', cur), ring = $('.cursor__ring', cur);
     let mx = 0, my = 0, rx = 0, ry = 0;
-    addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; }, { passive: true });
-    const loop = () => { rx += (mx - rx) * 0.2; ry += (my - ry) * 0.2; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(loop); };
+    addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; }, { passive: true });
+    const loop = () => {
+      rx += (mx - rx) * 0.2; ry += (my - ry) * 0.2;
+      dot.style.transform = `translate(${mx}px, ${my}px)`;
+      ring.style.transform = `translate(${rx}px, ${ry}px)`;
+      requestAnimationFrame(loop);
+    };
     requestAnimationFrame(loop);
     document.addEventListener('mouseover', (e) => {
       const media = e.target.closest('.reel, .campaign');
