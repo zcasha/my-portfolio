@@ -17,7 +17,6 @@
     { t: 'Silk Growing', c: '', d: 'Educational content on silk cultivation, edited for clarity and retention.', v: 'silk-growing', g: 'Editing,Series' },
     { t: 'Gardening Tips', c: '', d: 'Gardening tips edited for an easy-to-follow, binge-friendly series.', v: 'tares-gardening', g: 'Editing,Series' },
     { t: 'Goma — Asian Experience', c: 'Goma', d: 'A restaurant ad edit for Goma, an Asian dining brand — mood, food styling and pacing built for the feed.', v: 'restaurant-ad', g: 'Editing,Ad' },
-    { t: 'Innovative — Field Story', c: 'Innovative', d: 'A field-shot brand piece for Innovative — natural setting, understated pacing.', v: 'innovative-field', g: 'Editing,Brand' },
     { t: 'Innovative — Explainer I', c: 'Innovative', d: 'A talking-head explainer for Innovative, captioned for silent viewing.', v: 'innovative-talk-01', g: 'Editing,Captions' },
     { t: 'Innovative — Explainer II', c: 'Innovative', d: 'A second talking-head cut for Innovative — same format, different message.', v: 'innovative-talk-02', g: 'Editing,Captions' },
     { t: 'Garbh Sanskar', c: '', d: 'A captioned pregnancy-health explainer — talking head cut together with data cards and motion type for silent-scroll retention.', v: 'garbh-sanskar', g: 'Editing,Captions,Motion Graphics' },
@@ -174,7 +173,7 @@
   if (sr) {
     const LIST = [
       { f: 'excelsior', n: 'Excelsior' }, { f: 'car-reel-01', n: 'Kollectibles' },
-      { f: 'restaurant-ad', n: 'Goma' }, { f: 'innovative-field', n: 'Innovative' }
+      { f: 'restaurant-ad', n: 'Goma' }
     ];
     let idx = 0, swapT = 0;
     const swap = (i) => {
