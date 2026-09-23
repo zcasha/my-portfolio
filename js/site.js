@@ -167,69 +167,13 @@
     $$('a', mMenu).forEach(a => a.addEventListener('click', closeMenu));
   }
 
-  /* ---------- timeline scrubber (signature) ---------- */
-  const SECTIONS = [
-    { id: 'reels', label: 'Reel', mk: 'var(--tangerine)' },
-    { id: 'campaigns', label: 'Campaigns', mk: 'var(--mint)' },
-    { id: 'growth', label: 'Growth', mk: 'var(--pink)' },
-    { id: 'toolkit', label: 'Toolkit', mk: 'var(--violet)' },
-    { id: 'about', label: 'About', mk: 'var(--sun)' },
-    { id: 'words', label: 'Words', mk: 'var(--pink)' },
-    { id: 'contact', label: 'Contact', mk: 'var(--tangerine)' }
-  ];
-  const track = $('#scrubTrack'), play = $('#scrubPlay'), head = $('#scrubHead'), tcEl = $('#scrubTc');
-  const marks = [];
-  if (track) {
-    SECTIONS.forEach(s => {
-      const el = document.getElementById(s.id);
-      if (!el) return;
-      const b = document.createElement('button');
-      b.className = 'scrubber__mark';
-      b.dataset.label = s.label;
-      b.style.setProperty('--mk', s.mk);
-      b.setAttribute('aria-label', 'Jump to ' + s.label);
-      b.addEventListener('click', () => el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }));
-      track.appendChild(b);
-      marks.push({ el, b });
-    });
-  }
   const fmt = (sec) => `${String(Math.floor(sec / 60)).padStart(2, '0')}:${String(Math.floor(sec % 60)).padStart(2, '0')}`;
-  const RUNTIME = 240;
 
-  // measured once on load + resize — keeps the per-frame scroll handler read-free
-  let scrollMax = 1, trackW = 0, activeAt = [];
-  const measure = () => {
-    scrollMax = Math.max(1, document.documentElement.scrollHeight - innerHeight);
-    trackW = track ? track.clientWidth : 0;
-    activeAt = marks.map(m => m.el.offsetTop - 120);
-    marks.forEach(m => {
-      const p = Math.min(1, Math.max(0, (m.el.offsetTop - 80) / scrollMax));
-      m.b.style.left = (p * 100) + '%';
-    });
-  };
-
-  let ticking = false, lastTc = '', lastActive = -2;
-  const updateScrub = () => {
-    ticking = false;
-    onScrollNav();
-    const pct = Math.min(1, Math.max(0, scrollY / scrollMax));
-    if (play) play.style.transform = `scaleX(${pct})`;
-    if (head) head.style.transform = `translateX(${pct * trackW}px) rotate(45deg)`;
-    const tc = `${fmt(pct * RUNTIME)} / ${fmt(RUNTIME)}`;
-    if (tcEl && tc !== lastTc) { tcEl.textContent = tc; lastTc = tc; }
-    let active = -1;
-    for (let i = 0; i < activeAt.length; i++) if (scrollY >= activeAt[i]) active = i;
-    if (active !== lastActive) {
-      marks.forEach((m, i) => m.b.classList.toggle('is-active', i === active));
-      lastActive = active;
-    }
-  };
-  const reqScrub = () => { if (!ticking) { ticking = true; requestAnimationFrame(updateScrub); } };
-  addEventListener('scroll', reqScrub, { passive: true });
-  addEventListener('resize', () => { measure(); reqScrub(); }, { passive: true });
-  addEventListener('load', () => { measure(); reqScrub(); });
-  measure();
-  updateScrub();
+  // nav "stuck" shadow, rAF-throttled to avoid running on every raw scroll event
+  let navTicking = false;
+  const reqNavUpdate = () => { if (!navTicking) { navTicking = true; requestAnimationFrame(() => { navTicking = false; onScrollNav(); }); } };
+  addEventListener('scroll', reqNavUpdate, { passive: true });
+  reqNavUpdate();
 
   /* ---------- reveal ---------- */
   const revO = new IntersectionObserver((es) => es.forEach(e => {
