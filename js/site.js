@@ -9,21 +9,20 @@
 
   /* ---------- data ---------- */
   const REELS = [
-    { t: 'Kollectibles Reel', c: 'Kollectibles', d: 'A product showcase edit for Kollectibles, cut for short-form reach.', v: 'car-reel-01', g: 'Editing,Short-form' },
     { t: 'Excelsior', c: '', d: 'A longer-form edit — pacing sustained across a full narrative arc.', v: 'excelsior', g: 'Editing,Long-form' },
-    { t: 'Innovative — Explainer I', c: 'Innovative', d: 'A talking-head explainer for Innovative, captioned for silent viewing.', v: 'innovative-talk-01', g: 'Editing,Captions' },
+    { t: 'Kollectibles Reel', c: 'Kollectibles', d: 'A product showcase edit for Kollectibles, cut for short-form reach.', v: 'car-reel-01', g: 'Editing,Short-form' },
     { t: 'Farm Life', c: '', d: 'Slice-of-life farm footage, edited for short-form storytelling.', v: 'cow-stall', g: 'Editing' },
-    { t: 'Kollectibles — BDC Event', c: 'Kollectibles', d: 'Event coverage from a Bengaluru diecast meet — Kollectibles’ stall, cut into a fast, on-location brand reel.', v: 'kollectibles-event', g: 'Editing,Event,Short-form' },
+    { t: 'Innovative — Explainer I', c: 'Innovative', d: 'A talking-head explainer for Innovative, captioned for silent viewing.', v: 'innovative-talk-01', g: 'Editing,Captions' },
     { t: 'Lotus Growing', c: '', d: 'Part of an educational gardening series — clear, engaging how-to editing.', v: 'lotus-growing', g: 'Editing,Series' },
-    { t: 'Ayudha Pooje — Kollection Sale', c: 'Kollectibles', d: 'A festive motion poster for Kollectibles’ Ayudha Pooje sale — diecast collection styled with traditional pooja elements for a seasonal push.', v: 'ayudha-pooje-motion', g: 'Editing,Motion Graphics,Festive' },
+    { t: 'Kollectibles — BDC Event', c: 'Kollectibles', d: 'Event coverage from a Bengaluru diecast meet — Kollectibles’ stall, cut into a fast, on-location brand reel.', v: 'kollectibles-event', g: 'Editing,Event,Short-form' },
     { t: 'Silk Growing', c: '', d: 'Educational content on silk cultivation, edited for clarity and retention.', v: 'silk-growing', g: 'Editing,Series' },
-    { t: 'Goma — Asian Experience', c: 'Goma', d: 'A restaurant ad edit for Goma, an Asian dining brand — mood, food styling and pacing built for the feed.', v: 'restaurant-ad', g: 'Editing,Ad' },
+    { t: 'Ayudha Pooje — Kollection Sale', c: 'Kollectibles', d: 'A festive motion poster for Kollectibles’ Ayudha Pooje sale — diecast collection styled with traditional pooja elements for a seasonal push.', v: 'ayudha-pooje-motion', g: 'Editing,Motion Graphics,Festive' },
     { t: 'Gardening Tips', c: '', d: 'Gardening tips edited for an easy-to-follow, binge-friendly series.', v: 'tares-gardening', g: 'Editing,Series' },
-    { t: 'Innovative — Explainer II', c: 'Innovative', d: 'A second talking-head cut for Innovative — same format, different message.', v: 'innovative-talk-02', g: 'Editing,Captions' },
+    { t: 'Goma — Asian Experience', c: 'Goma', d: 'A restaurant ad edit for Goma, an Asian dining brand — mood, food styling and pacing built for the feed.', v: 'restaurant-ad', g: 'Editing,Ad' },
     { t: 'Garbh Sanskar', c: '', d: 'A captioned pregnancy-health explainer — talking head cut together with data cards and motion type for silent-scroll retention.', v: 'garbh-sanskar', g: 'Editing,Captions,Motion Graphics' },
-    { t: 'Kollectibles — Rapid Reveal', c: 'Kollectibles', d: 'A quick-cut showcase cycling through the diecast lineup — one car after another, each with its own beat.', v: 'car-reveal-concept', g: 'Editing,Short-form' },
+    { t: 'Innovative — Explainer II', c: 'Innovative', d: 'A second talking-head cut for Innovative — same format, different message.', v: 'innovative-talk-02', g: 'Editing,Captions' },
     { t: 'Baby Bonding', c: '', d: 'A prenatal-bonding explainer — interview footage layered with soft-toned title cards and animated text.', v: 'baby-bonding', g: 'Editing,Captions,Motion Graphics' },
-    { t: 'Kollectibles Reel II', c: 'Kollectibles', d: 'A second product showcase edit for Kollectibles — same diecast lineup, a fresh cut for the feed.', v: 'car-reel-02', g: 'Editing,Short-form' }
+    { t: 'Kollectibles — Rapid Reveal', c: 'Kollectibles', d: 'A quick-cut showcase cycling through the diecast lineup — one car after another, each with its own beat.', v: 'car-reveal-concept', g: 'Editing,Short-form' }
   ];
   const CAMPAIGNS = [
     { t: 'Republic Drop — Teaser', c: 'Kollectibles', cat: 'Campaign · Kollectibles', d: 'Slide 1 of 4 — the announcement teaser for Kollectibles’ Republic Day drop. Composited hero cars on a red-carpet boulevard, flags lining the frame.', i: 'kollectibles-01', w: 1080, h: 1350, g: 'Graphic Design,AI-Assisted Production' },
