@@ -9,19 +9,21 @@
 
   /* ---------- data ---------- */
   const REELS = [
-    { t: 'Excelsior', c: '', d: 'A longer-form edit — pacing sustained across a full narrative arc.', v: 'excelsior', g: 'Editing,Long-form' },
     { t: 'Kollectibles Reel', c: 'Kollectibles', d: 'A product showcase edit for Kollectibles, cut for short-form reach.', v: 'car-reel-01', g: 'Editing,Short-form' },
-    { t: 'Farm Life', c: '', d: 'Slice-of-life farm footage, edited for short-form storytelling.', v: 'cow-stall', g: 'Editing' },
+    { t: 'Excelsior', c: '', d: 'A longer-form edit — pacing sustained across a full narrative arc.', v: 'excelsior', g: 'Editing,Long-form' },
     { t: 'Innovative — Explainer I', c: 'Innovative', d: 'A talking-head explainer for Innovative, captioned for silent viewing.', v: 'innovative-talk-01', g: 'Editing,Captions' },
-    { t: 'Lotus Growing', c: '', d: 'Part of an educational gardening series — clear, engaging how-to editing.', v: 'lotus-growing', g: 'Editing,Series' },
+    { t: 'Farm Life', c: '', d: 'Slice-of-life farm footage, edited for short-form storytelling.', v: 'cow-stall', g: 'Editing' },
     { t: 'Kollectibles — BDC Event', c: 'Kollectibles', d: 'Event coverage from a Bengaluru diecast meet — Kollectibles’ stall, cut into a fast, on-location brand reel.', v: 'kollectibles-event', g: 'Editing,Event,Short-form' },
+    { t: 'Lotus Growing', c: '', d: 'Part of an educational gardening series — clear, engaging how-to editing.', v: 'lotus-growing', g: 'Editing,Series' },
+    { t: 'Ayudha Pooje — Kollection Sale', c: 'Kollectibles', d: 'A festive motion poster for Kollectibles’ Ayudha Pooje sale — diecast collection styled with traditional pooja elements for a seasonal push.', v: 'ayudha-pooje-motion', g: 'Editing,Motion Graphics,Festive' },
     { t: 'Silk Growing', c: '', d: 'Educational content on silk cultivation, edited for clarity and retention.', v: 'silk-growing', g: 'Editing,Series' },
     { t: 'Goma — Asian Experience', c: 'Goma', d: 'A restaurant ad edit for Goma, an Asian dining brand — mood, food styling and pacing built for the feed.', v: 'restaurant-ad', g: 'Editing,Ad' },
     { t: 'Gardening Tips', c: '', d: 'Gardening tips edited for an easy-to-follow, binge-friendly series.', v: 'tares-gardening', g: 'Editing,Series' },
     { t: 'Innovative — Explainer II', c: 'Innovative', d: 'A second talking-head cut for Innovative — same format, different message.', v: 'innovative-talk-02', g: 'Editing,Captions' },
     { t: 'Garbh Sanskar', c: '', d: 'A captioned pregnancy-health explainer — talking head cut together with data cards and motion type for silent-scroll retention.', v: 'garbh-sanskar', g: 'Editing,Captions,Motion Graphics' },
-    { t: 'Kollectibles Reel II', c: 'Kollectibles', d: 'A second product showcase edit for Kollectibles — same diecast lineup, a fresh cut for the feed.', v: 'car-reel-02', g: 'Editing,Short-form' },
-    { t: 'Baby Bonding', c: '', d: 'A prenatal-bonding explainer — interview footage layered with soft-toned title cards and animated text.', v: 'baby-bonding', g: 'Editing,Captions,Motion Graphics' }
+    { t: 'Kollectibles — Rapid Reveal', c: 'Kollectibles', d: 'A quick-cut showcase cycling through the diecast lineup — one car after another, each with its own beat.', v: 'car-reveal-concept', g: 'Editing,Short-form' },
+    { t: 'Baby Bonding', c: '', d: 'A prenatal-bonding explainer — interview footage layered with soft-toned title cards and animated text.', v: 'baby-bonding', g: 'Editing,Captions,Motion Graphics' },
+    { t: 'Kollectibles Reel II', c: 'Kollectibles', d: 'A second product showcase edit for Kollectibles — same diecast lineup, a fresh cut for the feed.', v: 'car-reel-02', g: 'Editing,Short-form' }
   ];
   const CAMPAIGNS = [
     { t: 'Republic Drop — Teaser', c: 'Kollectibles', cat: 'Campaign · Kollectibles', d: 'Slide 1 of 4 — the announcement teaser for Kollectibles’ Republic Day drop. Composited hero cars on a red-carpet boulevard, flags lining the frame.', i: 'kollectibles-01', w: 1080, h: 1350, g: 'Graphic Design,AI-Assisted Production' },
@@ -34,7 +36,8 @@
     { t: 'i-Power NPK — Product Launch', c: 'Innovative', cat: 'Product Ad · Innovative', d: 'Launch creative for i-Power NPK 24:10:10 — a mascot-led concept built to stop the scroll in a crowded agri-input feed.', i: 'innovative-ipower-npk', w: 1080, h: 1350, g: 'Graphic Design,Product Ad,AI-Assisted Production' },
     { t: 'Karna Bio-NPK — All Vegetables', c: 'Innovative', cat: 'Product Ad · Innovative', d: 'Launch creative for Karna Bio-NPK’s vegetable line — a cast of mascot characters carrying the brand’s mythic packaging into the field.', i: 'innovative-karna-veggies', w: 1080, h: 1350, g: 'Graphic Design,Product Ad,AI-Assisted Production' },
     { t: 'Karna Bio-NPK — Sugarcane', c: 'Innovative', cat: 'Product Ad · Innovative', d: 'The same Karna mascot system reworked for sugarcane growers — a new crop, a new character, the same brand world.', i: 'innovative-karna-sugarcane', w: 1080, h: 1350, g: 'Graphic Design,Product Ad,AI-Assisted Production' },
-    { t: 'Innovative India Agrify — Company Profile', c: 'Innovative', cat: 'Brand Collateral · Innovative', d: 'A one-pager introducing the company — manufacturing, R&D and leadership — built for distribution to partners and buyers.', i: 'innovative-company-profile', w: 1080, h: 1350, g: 'Graphic Design,Brand Collateral' }
+    { t: 'Innovative India Agrify — Company Profile', c: 'Innovative', cat: 'Brand Collateral · Innovative', d: 'A one-pager introducing the company — manufacturing, R&D and leadership — built for distribution to partners and buyers.', i: 'innovative-company-profile', w: 1080, h: 1350, g: 'Graphic Design,Brand Collateral' },
+    { t: 'Ayudha Pooje — Kollection Sale', c: 'Kollectibles', cat: 'Festive Post · Kollectibles', d: 'A festive Ayudha Pooje sale graphic — the diecast collection staged with traditional pooja elements, announcing the sale date.', i: 'ayudha-pooje-sale', w: 1080, h: 1080, g: 'Graphic Design,Festive Post' }
   ];
   const NOTES = [
     { q: 'Sent him raw footage I was genuinely embarrassed by. Got back a reel that made my mom text me asking if I “went viral.”', by: 'A relieved business owner', tag: 'Instagram Reels' },
