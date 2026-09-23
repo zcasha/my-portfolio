@@ -115,14 +115,24 @@ body {
   position: relative;
   display: inline-block;
 }
-.circle-note::after {
-  content: '';
+.circle-note__mark {
   position: absolute; inset: -14% -8% -22% -8%;
-  border: 3px solid var(--tangerine);
-  border-radius: 48% 52% 55% 45% / 60% 58% 42% 40%;
+  width: auto; height: auto;
+  overflow: visible;
   rotate: -3deg;
   pointer-events: none;
 }
+.circle-note__mark path {
+  fill: none;
+  stroke: var(--tangerine);
+  stroke-width: 3;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 620;
+  stroke-dashoffset: 620;
+  animation: circleDraw 1s var(--ease) 1.1s forwards;
+}
+@keyframes circleDraw { to { stroke-dashoffset: 0; } }
 
 /* ---------- buttons ---------- */
 .btn {
@@ -233,6 +243,13 @@ main { padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px) + 24px); }
 .hero__sub { font-size: clamp(1rem, 0.9vw + 0.8rem, 1.12rem); color: var(--ink-2); max-width: 34ch; }
 .hero__cta { margin-top: 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 .hero__reel { position: relative; }
+
+/* hero entrance — simple staggered fade + rise on load, separate from the scroll-triggered [data-reveal] system since this fires immediately, not on scroll */
+@keyframes heroIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.hero__copy .chip { animation: heroIn .7s var(--ease) both; }
+.hero__title { animation: heroIn .7s var(--ease) .12s both; }
+.hero__sub { animation: heroIn .7s var(--ease) .26s both; }
+.hero__cta { animation: heroIn .7s var(--ease) .38s both; }
 .phone .sticker { position: absolute; top: -20px; right: -24px; z-index: 5; rotate: 7deg; }
 
 /* phone showreel */
