@@ -73,6 +73,75 @@
   fill('#campGroup', '#campGroupClone', CAMPAIGNS, campHTML);
   fill('#noteGroup', '#noteGroupClone', NOTES, noteHTML);
 
+  /* ---------- endless marquee: enough copies for any viewport width + optional drag ---------- */
+  function initMarquee(strip, track, { draggable = false } = {}) {
+    if (!strip || !track || track.children.length < 2) return;
+    const cloneTemplate = track.children[1];
+
+    let groupW = 0;
+    const sync = () => {
+      // left-edge-to-left-edge delta, not children[0]'s own .width — the true repeat
+      // period includes the group's trailing margin (the folded-in seam gap), which
+      // .width alone omits
+      groupW = track.children[1].getBoundingClientRect().left - track.children[0].getBoundingClientRect().left;
+      if (!groupW) return;
+      const need = Math.max(2, Math.ceil(strip.getBoundingClientRect().width / groupW) + 2);
+      while (track.children.length < need) track.appendChild(cloneTemplate.cloneNode(true));
+      track.style.setProperty('--marquee-to', `${-100 / track.children.length}%`);
+    };
+    sync();
+    if (!groupW) return;
+
+    let resizeT;
+    addEventListener('resize', () => { clearTimeout(resizeT); resizeT = setTimeout(sync, 150); }, { passive: true });
+
+    if (!draggable) return;
+
+    let dragging = false, dragged = false, startX = 0, downX = 0, baseTx = 0;
+    const txNow = () => {
+      const m = getComputedStyle(track).transform.match(/matrix\(([^)]+)\)/);
+      return m ? parseFloat(m[1].split(',')[4]) : 0;
+    };
+    const wrap = (tx) => { tx %= groupW; return tx > 0 ? tx - groupW : tx; };
+
+    track.addEventListener('pointerdown', (e) => {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      dragging = true; dragged = false;
+      track.classList.add('is-dragging');
+      const a = track.getAnimations()[0]; if (a) a.pause();
+      baseTx = txNow();
+      startX = downX = e.clientX;
+      try { track.setPointerCapture(e.pointerId); } catch (err) {}
+    });
+    track.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      const dx = e.clientX - startX;
+      if (Math.abs(e.clientX - downX) > 4) dragged = true;
+      baseTx = wrap(baseTx + dx);
+      track.style.setProperty('transform', `translateX(${baseTx}px)`, 'important');
+      startX = e.clientX;
+    });
+    const reversed = getComputedStyle(track).animationDirection === 'reverse';
+    const endDrag = () => {
+      if (!dragging) return;
+      dragging = false;
+      track.classList.remove('is-dragging');
+      track.style.transform = '';
+      const a = track.getAnimations()[0];
+      if (a) {
+        const duration = a.effect.getTiming().duration;
+        const progress = -baseTx / groupW; // 0..1, matches the forward tx range regardless of playback direction
+        a.currentTime = (reversed ? 1 - progress : progress) * duration;
+        if (!reduce) a.play();
+      }
+    };
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+    track.addEventListener('click', (e) => { if (dragged) { dragged = false; e.stopPropagation(); } }, true);
+  }
+  initMarquee($('.brands__strip'), $('.brands__track'), { draggable: true });
+  $$('.strip').forEach(s => initMarquee(s, $('.strip__track', s), { draggable: true }));
+
   /* ---------- preloader (bulletproof) ---------- */
   const pre = $('#preloader');
   const done = () => pre && pre.classList.add('is-done');
