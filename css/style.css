@@ -116,10 +116,9 @@ body {
   display: inline-block;
 }
 .circle-note__mark {
-  position: absolute; inset: -14% -8% -22% -8%;
-  width: auto; height: auto;
+  position: absolute; top: -10%; left: -7%;
+  width: 114%; height: 122%; max-width: none;
   overflow: visible;
-  rotate: -3deg;
   pointer-events: none;
 }
 .circle-note__mark path {
