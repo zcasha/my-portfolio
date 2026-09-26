@@ -100,7 +100,7 @@
 
     if (!draggable) return;
 
-    let dragging = false, dragged = false, startX = 0, downX = 0, baseTx = 0;
+    let dragging = false, dragged = false, startX = 0, downX = 0, baseTx = 0, downCard = null;
     const txNow = () => {
       const m = getComputedStyle(track).transform.match(/matrix\(([^)]+)\)/);
       return m ? parseFloat(m[1].split(',')[4]) : 0;
@@ -110,6 +110,13 @@
     track.addEventListener('pointerdown', (e) => {
       if (e.pointerType === 'mouse' && e.button !== 0) return;
       dragging = true; dragged = false;
+      // grab the real target BEFORE setPointerCapture reassigns it: per spec, pointer
+      // capture retargets subsequent pointer AND synthesized mouse/click events to the
+      // capturing element, so a native click after this would land on `track` itself,
+      // not the card — .closest() on that never finds a .reel/.campaign ancestor since
+      // track is their PARENT, not a descendant. Save the intended card now and fire
+      // our own correctly-targeted click for it once we know this wasn't a drag.
+      downCard = e.target.closest('.reel, .campaign');
       track.classList.add('is-dragging');
       const a = track.getAnimations()[0]; if (a) a.pause();
       baseTx = txNow();
@@ -137,6 +144,8 @@
         a.currentTime = (reversed ? 1 - progress : progress) * duration;
         if (!reduce) a.play();
       }
+      if (!dragged && downCard) downCard.click();
+      downCard = null;
     };
     track.addEventListener('pointerup', endDrag);
     track.addEventListener('pointercancel', endDrag);
