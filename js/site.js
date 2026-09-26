@@ -119,7 +119,7 @@
     track.addEventListener('pointermove', (e) => {
       if (!dragging) return;
       const dx = e.clientX - startX;
-      if (Math.abs(e.clientX - downX) > 4) dragged = true;
+      if (Math.abs(e.clientX - downX) > 10) dragged = true;
       baseTx = wrap(baseTx + dx);
       track.style.setProperty('transform', `translateX(${baseTx}px)`, 'important');
       startX = e.clientX;
